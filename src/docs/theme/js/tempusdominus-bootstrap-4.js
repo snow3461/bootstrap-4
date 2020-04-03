@@ -1,6 +1,6 @@
 /*@preserve
  * Tempus Dominus Bootstrap4 v5.1.2 (https://tempusdominus.github.io/bootstrap-4/)
- * Copyright 2016-2018 Jonathan Peterson
+ * Copyright 2016-2020 Jonathan Peterson
  * Licensed under MIT (https://github.com/tempusdominus/bootstrap-3/blob/master/LICENSE)
  */
 
@@ -490,7 +490,7 @@ var DateTimePicker = function ($, moment) {
         DateTimePicker.prototype._change = function _change(e) {
             var val = $(e.target).val().trim(),
                 parsedDate = val ? this._parseInputDate(val) : null;
-            this._setValue(parsedDate);
+            this._setValue(parsedDate, this._getLastPickedDateIndex());
             e.stopImmediatePropagation();
             return false;
         };
@@ -776,7 +776,7 @@ var DateTimePicker = function ($, moment) {
         };
 
         DateTimePicker.prototype._getLastPickedDate = function _getLastPickedDate() {
-            return this._dates[this._getLastPickedDateIndex()];
+            return this._dates[this._getLastPickedDateIndex()] || this.getMoment();
         };
 
         DateTimePicker.prototype._getLastPickedDateIndex = function _getLastPickedDateIndex() {
